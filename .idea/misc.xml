@@ -3,8 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.5" />
+        <entry key="app/src/main/res/drawable/search_bar_layout.xml" value="0.1025" />
+        <entry key="app/src/main/res/drawable/shape_half_circle.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_header.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_search_result.xml" value="0.29074074074074074" />
+        <entry key="app/src/main/res/layout/search_result_item.xml" value="0.36629526462395545" />
       </map>
     </option>
   </component>

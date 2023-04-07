@@ -2,4 +2,13 @@
     <string name="app_name">Brewery</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_example">New York</string>
+    <string name="home_text">Descubra as melhores cervejarias próxima a você.</string>
+    <string name="half_circle_description">Half circle</string>
+    <string name="brewery_icon_description">Brewery icon</string>
+    <string name="header_title">Brewery</string>
+    <string name="rate_icon_description">Rate icon</string>
+    <string name="favorite_icon_description">Favorite icon</string>
+    <string name="results">Resultados</string>
+    <string name="logo">Logo</string>
 </resources>
