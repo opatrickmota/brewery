@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/yellow"
+    tools:context=".view.fragments.header.HeaderFragment">
+
+    <ImageButton
+        android:id="@+id/fragment_header_brewery_image_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="Brewery icon"
+        android:src="@drawable/ic_beer"
+        android:backgroundTint="@color/transparent"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/fragment_header_title_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Brewery"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_header_brewery_image_button"
+        app:layout_constraintStart_toEndOf="@id/fragment_header_brewery_image_button"
+        app:layout_constraintTop_toTopOf="@id/fragment_header_brewery_image_button" />
+
+    <ImageButton
+        android:id="@+id/fragment_header_rate_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="Rate icon"
+        android:src="@drawable/ic_star"
+        android:backgroundTint="@color/transparent"
+        app:layout_constraintEnd_toStartOf="@id/fragment_header_favorite_image_view"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_header_brewery_image_button"
+        app:layout_constraintTop_toTopOf="@id/fragment_header_brewery_image_button" />
+
+    <ImageButton
+        android:id="@+id/fragment_header_favorite_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="Favorite icon"
+        android:src="@drawable/ic_favorite"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="@color/transparent"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_header_rate_image_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/fragment_header_rate_image_view" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
