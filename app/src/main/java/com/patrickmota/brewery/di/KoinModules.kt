@@ -3,6 +3,7 @@ package com.patrickmota.brewery.di
 import com.patrickmota.brewery.data.remote.api.BreweryService
 import com.patrickmota.brewery.data.remote.repository.BreweryRepository
 import com.patrickmota.brewery.data.remote.repository.BreweryRepositoryImpl
+import com.patrickmota.brewery.viewmodel.detail.DetailViewModel
 import com.patrickmota.brewery.viewmodel.home.HomeViewModel
 import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
@@ -46,7 +47,7 @@ object KoinModules {
     }
 
     val repositoryModule = module {
-        single<BreweryRepository>  {
+        single<BreweryRepository> {
             BreweryRepositoryImpl(get())
         }
     }
@@ -56,6 +57,10 @@ object KoinModules {
 
         single {
             HomeViewModel(get(), get())
+        }
+
+        single {
+            DetailViewModel(get(), get())
         }
     }
 }

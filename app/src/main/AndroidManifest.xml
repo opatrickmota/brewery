@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.patrickmota.brewery">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".BreweryApplication"
@@ -17,9 +17,13 @@
         android:theme="@style/Theme.Brewery"
         tools:targetApi="31">
         <activity
-            android:name=".view.activities.MainActivity"
+            android:name=".view.activities.DetailActivity"
             android:screenOrientation="portrait"
-            android:exported="true">
+            android:exported="false" />
+        <activity
+            android:name=".view.activities.MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -8,7 +8,6 @@ class BreweryRepositoryImpl(private val service: BreweryService) : BreweryReposi
     override suspend fun getBreweries(city: String): List<BreweryResponse> =
         service.getBreweries(city)
 
-    override suspend fun getBreweryById(id: String): BreweryResponse {
-        TODO("Not yet implemented")
-    }
+    override suspend fun getBreweryById(id: String): BreweryResponse =
+        service.getBreweryById(id)
 }
