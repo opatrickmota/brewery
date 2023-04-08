@@ -7,8 +7,8 @@
         <entry key="app/src/main/res/drawable/shape_half_circle.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_header.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/fragment_search_result.xml" value="0.29074074074074074" />
-        <entry key="app/src/main/res/layout/search_result_item.xml" value="0.36629526462395545" />
+        <entry key="app/src/main/res/layout/fragment_search_result.xml" value="0.21" />
+        <entry key="app/src/main/res/layout/search_result_item.xml" value="0.25" />
       </map>
     </option>
   </component>
