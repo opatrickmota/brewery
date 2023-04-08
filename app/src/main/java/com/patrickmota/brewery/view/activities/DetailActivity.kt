@@ -110,6 +110,18 @@ class DetailActivity : AppCompatActivity() {
                 showMap(getUri(it))
             }
         }
+
+        binding.activityDetailWebsiteTextView.setOnClickListener {
+            brewery?.webSiteUrl?.let {
+                toBrowser(it)
+            }
+        }
+    }
+
+    private fun toBrowser(url: String) {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(url)
+        startActivity(intent)
     }
 
     private fun getLocalization(brewery: BreweryResponse?): String {
