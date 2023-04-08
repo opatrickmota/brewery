@@ -19,6 +19,7 @@
     <string name="activity_detail_rate">Avaliar</string>
     <string name="activity_detail_rating_average">0,0</string>
     <string name="activity_detail_title">Detalhes da cervejaria</string>
+    <string name="activity_detail_error_location">Não foi possível abrir a localização.</string>
     <plurals name="activity_detail_rating" translatable="false">
         <item quantity="one">%d Avaliação</item>
         <item quantity="other">%d Avaliações</item>

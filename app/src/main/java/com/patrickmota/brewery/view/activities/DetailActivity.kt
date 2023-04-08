@@ -1,7 +1,11 @@
 package com.patrickmota.brewery.view.activities
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import com.patrickmota.brewery.R
 import com.patrickmota.brewery.constants.Brewery
 import com.patrickmota.brewery.data.remote.model.BreweryResponse
@@ -20,8 +24,51 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupMenuListener()
+        setupListeners()
         setupObservers()
+    }
+
+    private fun setupListeners() {
+        setupMenuListener()
+    }
+
+    private fun getUri(brewery: BreweryResponse): Uri? {
+        val baseUri = "geo:0,0?q="
+        return when {
+            (brewery.latitude != null && brewery.longitude != null) -> {
+                (baseUri + brewery.latitude + ", " + brewery.longitude + "(Treasure)").toUri()
+            }
+            (brewery.street?.isNotBlank() == true) -> {
+                (baseUri + brewery.street.orEmpty() + " " + (brewery.address1 ?: brewery.address2
+                ?: brewery.address3
+                ?: "") + " " + brewery.city.orEmpty() + " " + brewery.state.orEmpty() + " " + brewery.country.orEmpty()).toUri()
+            }
+            (getLocalization(brewery).isNotBlank()) -> {
+                (baseUri + getLocalization(brewery)).toUri()
+            }
+            (brewery.address2?.isNotBlank() == true) -> {
+                (baseUri + brewery.address2).toUri()
+            }
+            (brewery.address3?.isNotBlank() == true) -> {
+                (baseUri + brewery.address3).toUri()
+            }
+            else -> null
+        }
+    }
+
+    private fun showMap(geoLocation: Uri?) {
+        val intent = Intent(Intent.ACTION_VIEW, geoLocation)
+        intent.setPackage("com.google.android.apps.maps")
+
+        try {
+            startActivity(intent)
+        } catch (e: Throwable) {
+            Toast.makeText(
+                this,
+                getString(R.string.activity_detail_error_location),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 
     private fun setupObservers() {
@@ -57,6 +104,12 @@ class DetailActivity : AppCompatActivity() {
             brewery?.webSiteUrl ?: "The company does not have a website"
         binding.activityDetailPhoneTextView.text =
             brewery?.phone ?: "The company does not have a phone"
+
+        binding.activityDetailMapTextView.setOnClickListener {
+            brewery?.let {
+                showMap(getUri(it))
+            }
+        }
     }
 
     private fun getLocalization(brewery: BreweryResponse?): String {
