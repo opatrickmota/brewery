@@ -116,6 +116,18 @@ class DetailActivity : AppCompatActivity() {
                 toBrowser(it)
             }
         }
+
+        binding.activityDetailPhoneTextView.setOnClickListener {
+            brewery?.phone?.let {
+                openNumberInDialer(it)
+            }
+        }
+    }
+
+    private fun openNumberInDialer(phone: String) {
+        val intent = Intent(Intent.ACTION_DIAL)
+        intent.data = Uri.parse("tel:$phone")
+        startActivity(intent)
     }
 
     private fun toBrowser(url: String) {
