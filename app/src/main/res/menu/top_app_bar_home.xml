@@ -3,13 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/rate"
-        android:icon="@drawable/ic_star"
-        android:title="@string/rate_icon_description"
-        android:contentDescription="@string/rate_icon_description"
-        app:showAsAction="ifRoom" />
-
-    <item
         android:id="@+id/favorite_home"
         android:icon="@drawable/ic_favorite"
         android:title="@string/favorite_icon_description"

@@ -4,14 +4,18 @@ import android.app.Application
 import androidx.room.Room
 import com.patrickmota.brewery.data.local.repository.FavoritesRepository
 import com.patrickmota.brewery.data.local.repository.FavoritesRepositoryImpl
+import com.patrickmota.brewery.data.local.repository.RateRepository
+import com.patrickmota.brewery.data.local.repository.RateRepositoryImpl
 import com.patrickmota.brewery.data.local.room.BreweryDatabase
 import com.patrickmota.brewery.data.local.room.FavoritesDao
+import com.patrickmota.brewery.data.local.room.RateDao
 import com.patrickmota.brewery.data.remote.api.BreweryService
 import com.patrickmota.brewery.data.remote.repository.BreweryRepository
 import com.patrickmota.brewery.data.remote.repository.BreweryRepositoryImpl
 import com.patrickmota.brewery.viewmodel.detail.DetailViewModel
 import com.patrickmota.brewery.viewmodel.favorite.FavoriteViewModel
 import com.patrickmota.brewery.viewmodel.home.HomeViewModel
+import com.patrickmota.brewery.viewmodel.rate.RateViewModel
 import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -62,6 +66,10 @@ object KoinModules {
         single<FavoritesRepository> {
             FavoritesRepositoryImpl(get())
         }
+
+        single<RateRepository> {
+            RateRepositoryImpl(get())
+        }
     }
 
     val viewModelModule = module {
@@ -78,6 +86,10 @@ object KoinModules {
         single {
             FavoriteViewModel(get(), get())
         }
+
+        single {
+            RateViewModel(get(), get())
+        }
     }
 
     val databaseModule = module {
@@ -90,7 +102,12 @@ object KoinModules {
             return database.favoritesDao()
         }
 
+        fun provideRateDao(database: BreweryDatabase): RateDao {
+            return database.rateDao()
+        }
+
         single { provideDatabase(androidApplication()) }
         single { provideFavoriteDao(get()) }
+        single { provideRateDao(get()) }
     }
 }

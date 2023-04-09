@@ -6,14 +6,18 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.patrickmota.brewery.R
 import com.patrickmota.brewery.constants.Brewery
+import com.patrickmota.brewery.data.local.model.RateModel
 import com.patrickmota.brewery.data.remote.model.BreweryResponse
 import com.patrickmota.brewery.data.remote.model.toBreweryModel
 import com.patrickmota.brewery.databinding.ActivityDetailBinding
+import com.patrickmota.brewery.databinding.BottomSheetDialogLayoutBinding
 import com.patrickmota.brewery.viewmodel.ViewData
 import com.patrickmota.brewery.viewmodel.detail.DetailViewModel
 import com.patrickmota.brewery.viewmodel.favorite.FavoriteViewModel
+import com.patrickmota.brewery.viewmodel.rate.RateViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailActivity : AppCompatActivity() {
@@ -21,10 +25,16 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
     private val viewModel: DetailViewModel by viewModel()
     private val favoriteViewModel: FavoriteViewModel by viewModel()
+    private lateinit var rateBinding: BottomSheetDialogLayoutBinding
+    private val dialog by lazy {
+        BottomSheetDialog(this, R.style.RateThemeDialog)
+    }
+    private val rateViewModel: RateViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
+        rateBinding = BottomSheetDialogLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
 
@@ -37,6 +47,48 @@ class DetailActivity : AppCompatActivity() {
 
     private fun setupListeners() {
         setupMenuListener()
+        setupRatingListener()
+    }
+
+    private fun setupRatingListener() {
+        binding.activityDetailRateButton.setOnClickListener {
+            showRatingDialog()
+        }
+    }
+
+    private fun showRatingDialog() {
+        dialog.setContentView(rateBinding.root)
+        dialog.show()
+
+        rateBinding.dialogRateCloseButtonImageView.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        rateBinding.dialogRateSaveButton.setOnClickListener {
+            saveRating()
+            dialog.dismiss()
+        }
+    }
+
+    private fun saveRating() {
+        val breweryId = intent.getStringExtra("id").orEmpty()
+        val rating = rateBinding.dialogRateRateRatingBar.rating
+
+        binding.activityDetailTotalReviewTextView.text =
+            resources.getQuantityString(R.plurals.activity_detail_rating, 1, 1)
+        binding.activityDetailRatingAverageTextView.text = rating.toString()
+        binding.activityDetailStarsRatingBar.rating = rating
+
+        Toast.makeText(
+            this,
+            "Avaliado.",
+            Toast.LENGTH_SHORT
+        ).show()
+
+        rateViewModel.addRating(
+            RateModel(breweryId, rating.toInt())
+        )
+
     }
 
     private fun getUri(brewery: BreweryResponse): Uri? {
@@ -128,6 +180,22 @@ class DetailActivity : AppCompatActivity() {
         binding.activityDetailPhoneTextView.setOnClickListener {
             brewery?.phone?.let {
                 openNumberInDialer(it)
+            }
+        }
+
+        rateViewModel.getRateById(brewery?.id.orEmpty())
+        rateViewModel.rating.observe(this@DetailActivity) {
+            when (it.status) {
+                ViewData.Status.COMPLETE -> {
+                    it.data?.let { rateModel ->
+                        binding.activityDetailTotalReviewTextView.text =
+                            resources.getQuantityString(R.plurals.activity_detail_rating, 1, 1)
+                        binding.activityDetailRatingAverageTextView.text =
+                            rateModel.rating.toString()
+                        binding.activityDetailStarsRatingBar.rating = rateModel.rating.toFloat()
+                    }
+                }
+                else -> Unit
             }
         }
     }
