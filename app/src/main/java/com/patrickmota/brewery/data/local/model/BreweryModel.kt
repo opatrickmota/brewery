@@ -1,35 +1,39 @@
-package com.patrickmota.brewery.data.remote.model
+package com.patrickmota.brewery.data.local.model
 
-import com.google.gson.annotations.SerializedName
-import com.patrickmota.brewery.data.local.model.BreweryModel
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.patrickmota.brewery.data.remote.model.BreweryResponse
 
-data class BreweryResponse(
+@Entity(tableName = "brewery")
+data class BreweryModel(
+    @PrimaryKey
     val id: String,
     val name: String?,
-    @SerializedName("brewery_type")
+    @ColumnInfo(name = "brewery_type")
     val breweryType: String?,
-    @SerializedName("address_1")
+    @ColumnInfo(name = "address_1")
     val address1: String?,
-    @SerializedName("address_2")
+    @ColumnInfo(name = "address_2")
     val address2: String?,
-    @SerializedName("address_3")
+    @ColumnInfo(name = "address_3")
     val address3: String?,
     val city: String?,
-    @SerializedName("state_province")
+    @ColumnInfo(name = "state_province")
     val stateProvince: String?,
-    @SerializedName("postal_code")
+    @ColumnInfo(name = "postal_code")
     val postalCode: String?,
     val country: String?,
     val longitude: String?,
     val latitude: String?,
     val phone: String?,
-    @SerializedName("website_url")
+    @ColumnInfo(name = "website_url")
     val webSiteUrl: String?,
     val state: String?,
     val street: String?
 )
 
-fun BreweryResponse.toBreweryModel() = BreweryModel(
+fun BreweryModel.toBreweryResponse() = BreweryResponse(
     id,
     name,
     breweryType,

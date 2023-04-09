@@ -9,23 +9,30 @@ import androidx.core.net.toUri
 import com.patrickmota.brewery.R
 import com.patrickmota.brewery.constants.Brewery
 import com.patrickmota.brewery.data.remote.model.BreweryResponse
+import com.patrickmota.brewery.data.remote.model.toBreweryModel
 import com.patrickmota.brewery.databinding.ActivityDetailBinding
 import com.patrickmota.brewery.viewmodel.ViewData
 import com.patrickmota.brewery.viewmodel.detail.DetailViewModel
+import com.patrickmota.brewery.viewmodel.favorite.FavoriteViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
     private val viewModel: DetailViewModel by viewModel()
+    private val favoriteViewModel: FavoriteViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+    }
 
-        setupListeners()
+    override fun onResume() {
+        super.onResume()
+
         setupObservers()
+        setupListeners()
     }
 
     private fun setupListeners() {
@@ -85,6 +92,7 @@ class DetailActivity : AppCompatActivity() {
                     setupUi(Brewery.brewery)
                 }
                 ViewData.Status.COMPLETE -> {
+                    Brewery.brewery = it.data
                     setupUi(it.data)
                 }
                 ViewData.Status.ERROR -> Unit
@@ -160,23 +168,44 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun setupMenuListener() {
+        val breweryId = intent.getStringExtra("id").orEmpty()
 
         binding.activityDetailHeaderMaterialToolbar.setNavigationOnClickListener {
             onBackPressed()
         }
 
-        binding.activityDetailHeaderMaterialToolbar.inflateMenu(R.menu.top_app_bar)
+        favoriteViewModel.loadFavoriteById(breweryId)
+        favoriteViewModel.brewery.observe(this@DetailActivity) {
+            binding.activityDetailHeaderMaterialToolbar.menu.clear()
+            when (it.status) {
+                ViewData.Status.COMPLETE -> {
+                    if (it.data?.id == breweryId) {
+                        binding.activityDetailHeaderMaterialToolbar
+                            .inflateMenu(R.menu.top_app_bar_favorited)
+                    } else {
+                        binding.activityDetailHeaderMaterialToolbar.inflateMenu(R.menu.top_app_bar)
+                    }
+                }
+                else -> Unit
+            }
+        }
 
         binding.activityDetailHeaderMaterialToolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.favorite -> {
                     binding.activityDetailHeaderMaterialToolbar.menu.clear()
                     binding.activityDetailHeaderMaterialToolbar.inflateMenu(R.menu.top_app_bar_favorited)
+                    Brewery.brewery?.let {
+                        favoriteViewModel.addFavorite(it.toBreweryModel())
+                    }
                     true
                 }
                 R.id.favorited -> {
                     binding.activityDetailHeaderMaterialToolbar.menu.clear()
                     binding.activityDetailHeaderMaterialToolbar.inflateMenu(R.menu.top_app_bar)
+                    Brewery.brewery?.let {
+                        favoriteViewModel.deleteFavorite(it.toBreweryModel())
+                    }
                     true
                 }
                 else -> false

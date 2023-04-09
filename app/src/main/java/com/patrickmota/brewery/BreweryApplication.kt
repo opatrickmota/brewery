@@ -1,6 +1,7 @@
 package com.patrickmota.brewery
 
 import android.app.Application
+import com.patrickmota.brewery.di.KoinModules.databaseModule
 import com.patrickmota.brewery.di.KoinModules.networkModule
 import com.patrickmota.brewery.di.KoinModules.repositoryModule
 import com.patrickmota.brewery.di.KoinModules.viewModelModule
@@ -15,7 +16,7 @@ class BreweryApplication: Application() {
         startKoin {
             androidLogger()
             androidContext(this@BreweryApplication)
-            modules(networkModule, repositoryModule, viewModelModule)
+            modules(networkModule, repositoryModule, viewModelModule, databaseModule)
         }
     }
 }

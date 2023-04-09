@@ -9,6 +9,7 @@
         <entry key="app/src/main/res/drawable/splash_bg.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/splash_bg_color.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_detail.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_favorite.xml" value="0.16979166666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.16979166666666667" />
         <entry key="app/src/main/res/layout/fragment_header.xml" value="0.33" />
