@@ -46,7 +46,7 @@ jobs:
         uses: r0adkll/upload-google-play@v1.0.19
         with:
           serviceAccountJson: service_account.json
-          packageName: com.patrickmota.leitor
+          packageName: com.patrickmota.brewery
           releaseFiles: app/build/outputs/bundle/release/app-release.aab
           track: internal
           status: completed
