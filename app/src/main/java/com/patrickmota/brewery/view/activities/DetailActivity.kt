@@ -82,7 +82,7 @@ class DetailActivity : AppCompatActivity() {
 
         Toast.makeText(
             this,
-            "Avaliado.",
+            "Avaliado",
             Toast.LENGTH_SHORT
         ).show()
 
