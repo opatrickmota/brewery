@@ -46,21 +46,45 @@ class FavoriteActivity : AppCompatActivity() {
         favoriteViewModel.breweries.observe(this@FavoriteActivity) {
             when (it.status) {
                 ViewData.Status.COMPLETE -> {
-                    binding.activityFavoriteBreweriesFragmentContainerView.visibility = View.VISIBLE
+                    if (it.data?.isEmpty() == true) {
+                        showEmptyState()
+                    } else {
+                        showFragmentContainer()
 
-                    val breweries = it.data?.map { brewery ->
-                        brewery.toBreweryResponse()
-                    }
+                        val breweries = it.data?.map { brewery ->
+                            brewery.toBreweryResponse()
+                        }
 
-                    if (fragmentTransaction.isEmpty) {
-                        fragmentTransaction.replace(
-                            R.id.activity_favorite_breweries_fragment_container_view,
-                            SearchResultFragment(breweries = breweries.orEmpty())
-                        ).commit()
+                        if (fragmentTransaction.isEmpty) {
+                            fragmentTransaction.replace(
+                                R.id.activity_favorite_breweries_fragment_container_view,
+                                SearchResultFragment(breweries = breweries.orEmpty())
+                            ).commit()
+                        }
                     }
                 }
                 else -> Unit
             }
         }
+    }
+
+    private fun showFragmentContainer() {
+        hideEmptyState()
+        binding.activityFavoriteBreweriesFragmentContainerView.visibility =
+            View.VISIBLE
+    }
+
+    private fun hideFragmentContainer() {
+        binding.activityFavoriteBreweriesFragmentContainerView.visibility =
+            View.GONE
+    }
+
+    private fun showEmptyState() {
+        hideFragmentContainer()
+        binding.activityFavoriteNoFavoritesResultsTextView.visibility = View.VISIBLE
+    }
+
+    private fun hideEmptyState() {
+        binding.activityFavoriteNoFavoritesResultsTextView.visibility = View.GONE
     }
 }

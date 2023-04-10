@@ -148,7 +148,7 @@ class DetailActivity : AppCompatActivity() {
                     Brewery.brewery = it.data
                     setupUi(it.data)
                 }
-                ViewData.Status.ERROR -> Unit
+                ViewData.Status.ERROR -> setupUi(Brewery.brewery)
             }
         }
     }

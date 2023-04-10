@@ -43,25 +43,95 @@ class MainActivity : AppCompatActivity() {
         val city = binding.activityMainSearchEditTextInputEditText.text.toString()
 
         if (city.isNotBlank()) {
+            hideNoCityTyped()
             viewModel.loadBreweries(city)
             viewModel.breweries.observe(this@MainActivity) {
                 when (it.status) {
-                    ViewData.Status.COMPLETE -> {
-                        binding.activityMainSearchResultsFragmentContainerView.visibility =
-                            View.VISIBLE
-
-                        val fragmentManager: FragmentManager = supportFragmentManager
-                        val fragmentTransaction: FragmentTransaction =
-                            fragmentManager.beginTransaction()
-                        fragmentTransaction.replace(
-                            R.id.activity_main_search_results_fragment_container_view,
-                            SearchResultFragment(breweries = it.data.orEmpty())
-                        )
-                            .commit()
+                    ViewData.Status.LOADING -> {
+                        showLoading()
+                        hideError()
                     }
-                    else -> Unit
+                    ViewData.Status.COMPLETE -> {
+                        hideLoading()
+                        hideError()
+
+                        if (it.data?.isEmpty() == true) {
+                            showEmptyState()
+                        } else {
+                            showFragmentContainer()
+
+                            val fragmentManager: FragmentManager = supportFragmentManager
+                            val fragmentTransaction: FragmentTransaction =
+                                fragmentManager.beginTransaction()
+                            fragmentTransaction.replace(
+                                R.id.activity_main_search_results_fragment_container_view,
+                                SearchResultFragment(breweries = it.data.orEmpty())
+                            )
+                                .commit()
+                        }
+                    }
+                    ViewData.Status.ERROR -> {
+                        showError()
+                    }
                 }
             }
+        } else {
+            showNoCityTyped()
         }
+    }
+
+    private fun showFragmentContainer() {
+        hideEmptyState()
+        hideNoCityTyped()
+        binding.activityMainSearchResultsFragmentContainerView.visibility =
+            View.VISIBLE
+    }
+
+    private fun hideFragmentContainer() {
+        binding.activityMainSearchResultsFragmentContainerView.visibility =
+            View.GONE
+    }
+
+    private fun showEmptyState() {
+        hideFragmentContainer()
+        hideNoCityTyped()
+        binding.activityMainNoResultsTextView.visibility = View.VISIBLE
+    }
+
+    private fun hideEmptyState() {
+        binding.activityMainNoResultsTextView.visibility = View.GONE
+    }
+
+    private fun showNoCityTyped() {
+        hideEmptyState()
+        hideFragmentContainer()
+        binding.activityMainNoCityTypedTextView.visibility = View.VISIBLE
+    }
+
+    private fun hideNoCityTyped() {
+        binding.activityMainNoCityTypedTextView.visibility = View.GONE
+    }
+
+    private fun showLoading() {
+        hideNoCityTyped()
+        hideEmptyState()
+        hideFragmentContainer()
+        binding.activityMainLoadingProgressBar.visibility = View.VISIBLE
+    }
+
+    private fun hideLoading() {
+        binding.activityMainLoadingProgressBar.visibility = View.GONE
+    }
+
+    private fun showError() {
+        hideNoCityTyped()
+        hideEmptyState()
+        hideFragmentContainer()
+        hideLoading()
+        binding.activityMainErrorTextView.visibility = View.VISIBLE
+    }
+
+    private fun hideError() {
+        binding.activityMainErrorTextView.visibility = View.GONE
     }
 }
