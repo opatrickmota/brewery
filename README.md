@@ -1,6 +1,6 @@
 <h1 align="center"><strong>Brewery</strong></h1>
 
-## Projeto
+## Sobre
  
 Nosso aplicativo tem como objetivo facilitar a busca pelas melhores cervejarias em sua cidade. Com ele, você terá acesso a uma lista completa de 
 cervejarias, incluindo informações detalhadas sobre cada uma delas. Além disso, é possível acessar o site da cervejaria, localizá-la no mapa e discar 
@@ -9,7 +9,7 @@ as melhores cervejarias perto de você.
 
 [Fluxo do app](https://user-images.githubusercontent.com/38691922/230931794-97b4ae86-0484-4e7a-815f-96938e5dbe70.webm)
 
-### Tecnologias
+## Tecnologias
 
 * Koin
 * Room
@@ -19,13 +19,16 @@ as melhores cervejarias perto de você.
 * View Model
 * Live Data
 
-### Rodar
+## CI/CD
+Github Actions com o serviço do Google, Google Cloud Console.
 
-#### Emulador
+## Rodar
+
+### Emulador
 
 Clone o projeto, abra-o no Android Studio e aguarde o build ser finalizado. Após isso, rode em um emulador.
 
-#### Teste
+### Teste
 
 No terminal, na raiz do projeto, rode ./gradlew test.
 
