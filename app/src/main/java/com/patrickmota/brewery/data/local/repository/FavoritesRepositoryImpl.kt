@@ -8,7 +8,7 @@ class FavoritesRepositoryImpl(private val favoritesDao: FavoritesDao) : Favorite
     override suspend fun addFavorite(breweryModel: BreweryModel) =
         favoritesDao.addFavorite(breweryModel)
 
-    override suspend fun getBrewery(): List<BreweryModel> = favoritesDao.getBrewery()
+    override suspend fun getBreweries(): List<BreweryModel> = favoritesDao.getBrewery()
 
     override suspend fun getBreweryById(id: String): BreweryModel = favoritesDao.getBreweryById(id)
 

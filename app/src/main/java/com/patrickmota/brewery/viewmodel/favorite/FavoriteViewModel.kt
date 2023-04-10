@@ -58,7 +58,7 @@ class FavoriteViewModel(
         _breweries.postValue(ViewData(ViewData.Status.LOADING))
 
         CoroutineScope(defaultDispatcher).launch(defaultDispatcher + coroutineExceptionHandler) {
-            val response = repository.getBrewery()
+            val response = repository.getBreweries()
             _breweries.postValue(
                 ViewData(
                     ViewData.Status.COMPLETE,
