@@ -33,6 +33,7 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(R.style.Theme_Brewery)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         rateBinding = BottomSheetDialogLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
