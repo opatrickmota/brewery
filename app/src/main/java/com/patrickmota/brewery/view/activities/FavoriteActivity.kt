@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.patrickmota.brewery.R
-import com.patrickmota.brewery.data.local.model.toBreweryResponse
+import com.patrickmota.brewery.core.data.models.toBreweryResponse
 import com.patrickmota.brewery.databinding.ActivityFavoriteBinding
 import com.patrickmota.brewery.view.fragments.searchresult.SearchResultFragment
 import com.patrickmota.brewery.viewmodel.ViewData

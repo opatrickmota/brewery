@@ -7,8 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.patrickmota.brewery.R
+import com.patrickmota.brewery.common.hideSoftKeyboard
 import com.patrickmota.brewery.databinding.ActivityMainBinding
-import com.patrickmota.brewery.utils.hideSoftKeyboard
 import com.patrickmota.brewery.view.fragments.searchresult.SearchResultFragment
 import com.patrickmota.brewery.viewmodel.ViewData
 import com.patrickmota.brewery.viewmodel.home.HomeViewModel
@@ -83,6 +83,7 @@ class MainActivity : AppCompatActivity() {
     private fun showFragmentContainer() {
         hideEmptyState()
         hideNoCityTyped()
+        hideError()
         binding.activityMainSearchResultsFragmentContainerView.visibility =
             View.VISIBLE
     }
@@ -95,6 +96,7 @@ class MainActivity : AppCompatActivity() {
     private fun showEmptyState() {
         hideFragmentContainer()
         hideNoCityTyped()
+        hideError()
         binding.activityMainNoResultsTextView.visibility = View.VISIBLE
     }
 
@@ -105,6 +107,7 @@ class MainActivity : AppCompatActivity() {
     private fun showNoCityTyped() {
         hideEmptyState()
         hideFragmentContainer()
+        hideError()
         binding.activityMainNoCityTypedTextView.visibility = View.VISIBLE
     }
 
@@ -113,6 +116,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showLoading() {
+        hideError()
         hideNoCityTyped()
         hideEmptyState()
         hideFragmentContainer()

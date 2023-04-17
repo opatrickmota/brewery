@@ -9,9 +9,9 @@ import androidx.core.net.toUri
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.patrickmota.brewery.R
 import com.patrickmota.brewery.constants.Brewery
-import com.patrickmota.brewery.data.local.model.RateModel
-import com.patrickmota.brewery.data.remote.model.BreweryResponse
-import com.patrickmota.brewery.data.remote.model.toBreweryModel
+import com.patrickmota.brewery.core.data.models.BreweryResponse
+import com.patrickmota.brewery.core.data.models.RateModel
+import com.patrickmota.brewery.core.data.models.toBreweryModel
 import com.patrickmota.brewery.databinding.ActivityDetailBinding
 import com.patrickmota.brewery.databinding.BottomSheetDialogLayoutBinding
 import com.patrickmota.brewery.viewmodel.ViewData

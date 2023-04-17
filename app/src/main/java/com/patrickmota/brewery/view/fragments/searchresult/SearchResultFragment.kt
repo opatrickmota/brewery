@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.patrickmota.brewery.constants.Brewery
-import com.patrickmota.brewery.data.local.model.BreweryModel
-import com.patrickmota.brewery.data.remote.model.BreweryResponse
+import com.patrickmota.brewery.core.data.models.BreweryModel
+import com.patrickmota.brewery.core.data.models.BreweryResponse
 import com.patrickmota.brewery.databinding.FragmentSearchResultBinding
 import com.patrickmota.brewery.view.activities.DetailActivity
 import com.patrickmota.brewery.view.adapters.searchFragment.SearchFragmentAdapter
@@ -21,7 +21,7 @@ class SearchResultFragment(private val breweries: List<BreweryResponse>) : Fragm
 
     private lateinit var binding: FragmentSearchResultBinding
     private lateinit var resultAdapter: SearchFragmentAdapter
-    private val favoriteViewModel: FavoriteViewModel by viewModel()
+    private val favoriteViewModel: com.patrickmota.brewery.viewmodel.favorite.FavoriteViewModel by viewModel()
     private lateinit var favoritesBreweries: ArrayList<BreweryModel>
     private var state: Parcelable? = null
 
@@ -66,7 +66,7 @@ class SearchResultFragment(private val breweries: List<BreweryResponse>) : Fragm
         favoriteViewModel.loadFavoriteBreweries()
         favoriteViewModel.breweries.observe(requireActivity()) {
             when (it.status) {
-                ViewData.Status.COMPLETE -> {
+                com.patrickmota.brewery.viewmodel.ViewData.Status.COMPLETE -> {
                     favoritesBreweries = ArrayList(it.data ?: emptyList())
                     setupAdapter()
                     restoreScrollState()

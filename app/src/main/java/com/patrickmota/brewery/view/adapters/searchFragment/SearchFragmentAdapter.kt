@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.patrickmota.brewery.R
-import com.patrickmota.brewery.data.local.model.BreweryModel
-import com.patrickmota.brewery.data.remote.model.BreweryResponse
-import com.patrickmota.brewery.data.remote.model.toBreweryModel
+import com.patrickmota.brewery.core.data.models.BreweryModel
+import com.patrickmota.brewery.core.data.models.BreweryResponse
+import com.patrickmota.brewery.core.data.models.toBreweryModel
 import com.patrickmota.brewery.databinding.SearchResultItemBinding
 
 class SearchFragmentAdapter(

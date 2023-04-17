@@ -2,16 +2,16 @@ package com.patrickmota.brewery.di
 
 import android.app.Application
 import androidx.room.Room
-import com.patrickmota.brewery.data.local.repository.FavoritesRepository
-import com.patrickmota.brewery.data.local.repository.FavoritesRepositoryImpl
-import com.patrickmota.brewery.data.local.repository.RateRepository
-import com.patrickmota.brewery.data.local.repository.RateRepositoryImpl
-import com.patrickmota.brewery.data.local.room.BreweryDatabase
-import com.patrickmota.brewery.data.local.room.FavoritesDao
-import com.patrickmota.brewery.data.local.room.RateDao
-import com.patrickmota.brewery.data.remote.api.BreweryService
-import com.patrickmota.brewery.data.remote.repository.BreweryRepository
-import com.patrickmota.brewery.data.remote.repository.BreweryRepositoryImpl
+import com.patrickmota.brewery.core.domain.repositories.FavoritesRepository
+import com.patrickmota.brewery.core.data.repositories_impl.FavoritesRepositoryImpl
+import com.patrickmota.brewery.core.domain.repositories.RateRepository
+import com.patrickmota.brewery.core.data.repositories_impl.RateRepositoryImpl
+import com.patrickmota.brewery.core.data.db.BreweryDatabase
+import com.patrickmota.brewery.core.data.db.FavoritesDao
+import com.patrickmota.brewery.core.data.db.RateDao
+import com.patrickmota.brewery.core.data.api.BreweryService
+import com.patrickmota.brewery.core.domain.repositories.BreweryRepository
+import com.patrickmota.brewery.core.data.repositories_impl.BreweryRepositoryImpl
 import com.patrickmota.brewery.viewmodel.detail.DetailViewModel
 import com.patrickmota.brewery.viewmodel.favorite.FavoriteViewModel
 import com.patrickmota.brewery.viewmodel.home.HomeViewModel
@@ -76,19 +76,19 @@ object KoinModules {
         single { Dispatchers.IO }
 
         single {
-            HomeViewModel(get(), get())
+            com.patrickmota.brewery.viewmodel.home.HomeViewModel(get(), get())
         }
 
         single {
-            DetailViewModel(get(), get())
+            com.patrickmota.brewery.viewmodel.detail.DetailViewModel(get(), get())
         }
 
         single {
-            FavoriteViewModel(get(), get())
+            com.patrickmota.brewery.viewmodel.favorite.FavoriteViewModel(get(), get())
         }
 
         single {
-            RateViewModel(get(), get())
+            com.patrickmota.brewery.viewmodel.rate.RateViewModel(get(), get())
         }
     }
 
