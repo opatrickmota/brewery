@@ -2,20 +2,16 @@ package com.patrickmota.brewery.di
 
 import android.app.Application
 import androidx.room.Room
-import com.patrickmota.brewery.core.domain.repositories.FavoritesRepository
-import com.patrickmota.brewery.core.data.repositories_impl.FavoritesRepositoryImpl
-import com.patrickmota.brewery.core.domain.repositories.RateRepository
-import com.patrickmota.brewery.core.data.repositories_impl.RateRepositoryImpl
+import com.patrickmota.brewery.core.data.api.BreweryService
 import com.patrickmota.brewery.core.data.db.BreweryDatabase
 import com.patrickmota.brewery.core.data.db.FavoritesDao
 import com.patrickmota.brewery.core.data.db.RateDao
-import com.patrickmota.brewery.core.data.api.BreweryService
-import com.patrickmota.brewery.core.domain.repositories.BreweryRepository
 import com.patrickmota.brewery.core.data.repositories_impl.BreweryRepositoryImpl
-import com.patrickmota.brewery.viewmodel.detail.DetailViewModel
-import com.patrickmota.brewery.viewmodel.favorite.FavoriteViewModel
-import com.patrickmota.brewery.viewmodel.home.HomeViewModel
-import com.patrickmota.brewery.viewmodel.rate.RateViewModel
+import com.patrickmota.brewery.core.data.repositories_impl.FavoritesRepositoryImpl
+import com.patrickmota.brewery.core.data.repositories_impl.RateRepositoryImpl
+import com.patrickmota.brewery.core.domain.repositories.BreweryRepository
+import com.patrickmota.brewery.core.domain.repositories.FavoritesRepository
+import com.patrickmota.brewery.core.domain.repositories.RateRepository
 import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

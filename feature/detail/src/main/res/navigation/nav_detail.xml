@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_detail"
+    app:startDestination="@id/detailFragment">
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.patrickmota.brewery.detail.DetailFragment"
+        android:label="detail_fragment"
+        tools:layout="@layout/fragment_detail">
+
+        <argument
+            android:name="breweryId"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <deepLink
+            android:id="@+id/detailDeepLink"
+            app:uri="brewery://detail?breweryId={breweryId}" />
+    </fragment>
+
+</navigation>

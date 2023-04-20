@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_favorite"
+    app:startDestination="@id/favoritelFragment">
+
+    <fragment
+        android:id="@+id/favoritelFragment"
+        android:name="com.patrickmota.brewery.favorite.FavoriteFragment"
+        android:label="detail_fragment"
+        tools:layout="@layout/fragment_favorite">
+
+        <deepLink
+            android:id="@+id/detailDeepLink"
+            app:uri="brewery://favorite" />
+    </fragment>
+
+</navigation>

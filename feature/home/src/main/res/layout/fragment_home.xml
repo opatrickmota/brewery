@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeFragment">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_home_header_fragment_container_view"
+        android:name="com.patrickmota.brewery.header.HeaderFragment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/fragment_home_shape_half_circle_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/shape_half_circle"
+        android:contentDescription="@string/half_circle_description"
+        app:layout_constraintTop_toBottomOf="@id/fragment_home_header_fragment_container_view" />
+
+    <TextView
+        android:id="@+id/fragment_home_text_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:text="@string/home_text"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/fragment_home_header_fragment_container_view" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fragment_home_search_layout_text_input_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/default_margin"
+        android:layout_marginTop="16dp"
+        app:boxStrokeColor="@color/light_black"
+        app:endIconMode="clear_text"
+        app:hintAnimationEnabled="false"
+        app:hintEnabled="false"
+        app:hintTextColor="@color/light_black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_home_text_text_view"
+        app:startIconDrawable="@drawable/ic_search" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/fragment_home_search_edit_text_input_edit_text"
+            style="@style/Widget.Design.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/search_bar_layout"
+            android:hint="@string/search_example"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:textColor="@color/light_black"
+            android:textCursorDrawable="@color/black"
+            android:textSize="14sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_home_search_results_fragment_container_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_home_shape_half_circle_image_view"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/fragment_home_no_results_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:gravity="center"
+        android:text="@string/fragment_home_empty_state_title"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:visibility="gone"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_home_search_layout_text_input_layout"
+        tools:text="@string/fragment_home_empty_state_title"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/fragment_home_no_city_typed_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:gravity="center"
+        android:text="@string/fragment_home_no_city_typed"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:visibility="gone"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_home_search_layout_text_input_layout"
+        tools:text="@string/fragment_home_no_city_typed"
+        tools:visibility="gone" />
+
+    <TextView
+        android:id="@+id/fragment_home_error_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:gravity="center"
+        android:text="@string/fragment_home_error"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:visibility="gone"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_home_search_layout_text_input_layout"
+        tools:text="@string/fragment_home_error"
+        tools:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/fragment_home_loading_progress_bar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_home_search_layout_text_input_layout" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

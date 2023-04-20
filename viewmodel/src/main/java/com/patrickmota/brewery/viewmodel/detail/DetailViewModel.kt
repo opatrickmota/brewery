@@ -8,6 +8,7 @@ import com.patrickmota.brewery.core.domain.repositories.BreweryRepository
 import com.patrickmota.brewery.viewmodel.ViewData
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 class DetailViewModel(
@@ -30,7 +31,7 @@ class DetailViewModel(
     fun loadBrewery(id: String) {
         _brewery.postValue(ViewData(ViewData.Status.LOADING))
 
-        viewModelScope.launch(coroutineExceptionHandler + defaultDispatcher) {
+        CoroutineScope(defaultDispatcher).launch(coroutineExceptionHandler + defaultDispatcher) {
             val response = breweryRepository.getBreweryById(id)
 
             _brewery.postValue(
