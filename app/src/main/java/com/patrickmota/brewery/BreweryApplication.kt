@@ -4,6 +4,7 @@ import android.app.Application
 import com.patrickmota.brewery.di.KoinModules.databaseModule
 import com.patrickmota.brewery.di.KoinModules.networkModule
 import com.patrickmota.brewery.di.KoinModules.repositoryModule
+import com.patrickmota.brewery.di.KoinModules.usecaseModule
 import com.patrickmota.brewery.di.KoinModules.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -16,7 +17,7 @@ class BreweryApplication: Application() {
         startKoin {
             androidLogger()
             androidContext(this@BreweryApplication)
-            modules(networkModule, repositoryModule, viewModelModule, databaseModule)
+            modules(networkModule, repositoryModule, viewModelModule, databaseModule, usecaseModule)
         }
     }
 }

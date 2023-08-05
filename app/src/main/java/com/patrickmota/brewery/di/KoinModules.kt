@@ -12,6 +12,11 @@ import com.patrickmota.brewery.core.data.repositories_impl.RateRepositoryImpl
 import com.patrickmota.brewery.core.domain.repositories.BreweryRepository
 import com.patrickmota.brewery.core.domain.repositories.FavoritesRepository
 import com.patrickmota.brewery.core.domain.repositories.RateRepository
+import com.patrickmota.brewery.detail.usecase.GetLocalization
+import com.patrickmota.brewery.detail.usecase.GetUri
+import com.patrickmota.brewery.detail.usecase.OpenNumberInDialer
+import com.patrickmota.brewery.detail.usecase.ShowMap
+import com.patrickmota.brewery.detail.usecase.ShowWebsite
 import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -105,5 +110,13 @@ object KoinModules {
         single { provideDatabase(androidApplication()) }
         single { provideFavoriteDao(get()) }
         single { provideRateDao(get()) }
+    }
+
+    val usecaseModule = module {
+        factory { ShowMap() }
+        factory { ShowWebsite() }
+        factory { OpenNumberInDialer() }
+        factory { GetLocalization() }
+        factory { GetUri(get()) }
     }
 }
