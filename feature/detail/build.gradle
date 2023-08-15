@@ -39,17 +39,19 @@ dependencies {
     implementation project(':common')
     implementation project(':viewmodel')
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'com.google.android.material:material:1.6.1'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation rootProject.androidDependencies.core
+    implementation rootProject.androidDependencies.appcompat
+    implementation rootProject.androidDependencies.googleMaterial
 
-    implementation "io.insert-koin:koin-android:3.2.0"
-    implementation 'androidx.fragment:fragment-ktx:1.5.2'
-    implementation 'androidx.activity:activity-ktx:1.5.1'
+    testImplementation rootProject.testDependencies.junit
+    androidTestImplementation rootProject.testDependencies.extJunit
+    androidTestImplementation rootProject.testDependencies.espressoCore
 
-    implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
-    implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
+    implementation rootProject.androidDependencies.navFragment
+    implementation rootProject.androidDependencies.navUiKtx
+
+    implementation rootProject.androidDependencies.koin
+
+    implementation rootProject.androidDependencies.fragmetnKtx
+    implementation rootProject.androidDependencies.activityKtx
 }

@@ -32,19 +32,18 @@ android {
 dependencies {
     implementation project(':core')
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'com.google.android.material:material:1.6.1'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation rootProject.androidDependencies.core
+    implementation rootProject.androidDependencies.appcompat
+    implementation rootProject.androidDependencies.googleMaterial
 
-    implementation 'androidx.fragment:fragment-ktx:1.5.2'
-    implementation 'androidx.activity:activity-ktx:1.5.1'
+    testImplementation rootProject.testDependencies.junit
+    androidTestImplementation rootProject.testDependencies.extJunit
+    androidTestImplementation rootProject.testDependencies.espressoCore
 
-    testImplementation "androidx.arch.core:core-testing:2.1.0"
-    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1'
+    implementation rootProject.androidDependencies.fragmetnKtx
+    implementation rootProject.androidDependencies.activityKtx
 
-    testImplementation "io.mockk:mockk-android:1.13.3"
-    testImplementation "io.mockk:mockk-agent:1.13.3"
+    testImplementation rootProject.testDependencies.archCoreTesting
+    testImplementation rootProject.testDependencies.kotlinxCoroutines
+    testImplementation rootProject.testDependencies.mockk
 }

@@ -10,6 +10,70 @@ plugins {
     id 'org.jetbrains.kotlin.android' version '1.7.10' apply false
 }
 
+ext {
+
+    roomVersion = '2.4.1'
+    coreKtxVersion = '1.7.0'
+    appcompatVersion = '1.5.1'
+    googleMaterialVersion = '1.6.1'
+    constraintLayoutVersion = '2.1.4'
+
+    junitVersion = '4.13.2'
+    extJunitVersion = '1.1.5'
+    espressoCoreVersion = '3.5.1'
+
+    gsonVersion = '2.8.9'
+    retrofit2Version = '2.9.0'
+    retrofit2ConverterGsonVersion = '2.9.0'
+    okhttp3LoggingInterceptorVersion = '4.9.3'
+
+    koinVersion = '3.2.0'
+    fragmentKtxVersion = '1.5.2'
+    activityKtxVersion = '1.5.1'
+
+    navigationFragmentVersion = '2.5.3'
+    navigationUiKtxVersion = '2.5.3'
+
+    archCoreTestingVersion = '2.1.0'
+    kotlinxCoroutinesVersion = '1.6.1'
+    mockkVersion = '1.13.3'
+
+    androidDependencies = [
+            core: "androidx.core:core-ktx:$coreKtxVersion",
+            appcompat: "androidx.appcompat:appcompat:$appcompatVersion",
+            googleMaterial: "com.google.android.material:material:$googleMaterialVersion",
+            constraintlayout: "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
+            room: [
+                    "androidx.room:room-runtime:$roomVersion",
+                    "androidx.room:room-ktx:$roomVersion"
+            ],
+            kapt: "androidx.room:room-compiler:$roomVersion",
+            navFragment: "androidx.navigation:navigation-fragment-ktx:$navigationFragmentVersion",
+            navUiKtx: "androidx.navigation:navigation-ui-ktx:$navigationUiKtxVersion",
+            koin: "io.insert-koin:koin-android:$koinVersion",
+            fragmetnKtx: "androidx.fragment:fragment-ktx:$fragmentKtxVersion",
+            activityKtx: "androidx.activity:activity-ktx:$activityKtxVersion",
+            gson: "com.google.code.gson:gson:$gsonVersion",
+            retrofit2: [
+                    "com.squareup.retrofit2:retrofit:$retrofit2Version",
+                    "com.squareup.retrofit2:converter-gson:$retrofit2ConverterGsonVersion"
+            ],
+            okhttp3: "com.squareup.okhttp3:logging-interceptor:$okhttp3LoggingInterceptorVersion"
+    ]
+
+    testDependencies = [
+            junit: "junit:junit:$junitVersion",
+            extJunit: "androidx.test.ext:junit:$extJunitVersion",
+            espressoCore: "androidx.test.espresso:espresso-core:$espressoCoreVersion",
+            archCoreTesting: "androidx.arch.core:core-testing:$archCoreTestingVersion",
+            kotlinxCoroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinxCoroutinesVersion",
+            mockk: [
+                    "io.mockk:mockk-android:$mockkVersion",
+                    "io.mockk:mockk-agent:$mockkVersion"
+            ]
+    ]
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
