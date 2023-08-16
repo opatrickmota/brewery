@@ -2,11 +2,11 @@ package com.patrickmota.brewery.viewmodel.favorite
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.patrickmota.brewery.core.data.models.BreweryModel
 import com.patrickmota.brewery.core.domain.repositories.FavoritesRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 class FavoriteViewModel(
@@ -30,19 +30,19 @@ class FavoriteViewModel(
     }
 
     fun addFavorite(breweryModel: BreweryModel) =
-        CoroutineScope(defaultDispatcher).launch(coroutineExceptionHandler + defaultDispatcher) {
+        viewModelScope.launch(coroutineExceptionHandler + defaultDispatcher) {
             repository.addFavorite(breweryModel)
         }
 
     fun deleteFavorite(breweryModel: BreweryModel) =
-        CoroutineScope(defaultDispatcher).launch(coroutineExceptionHandler + defaultDispatcher) {
+        viewModelScope.launch(coroutineExceptionHandler + defaultDispatcher) {
             repository.deleteBrewery(breweryModel)
         }
 
     fun loadFavoriteById(id: String) {
         _brewery.postValue(com.patrickmota.brewery.viewmodel.ViewData(com.patrickmota.brewery.viewmodel.ViewData.Status.LOADING))
 
-        CoroutineScope(defaultDispatcher).launch(defaultDispatcher + coroutineExceptionHandler) {
+        viewModelScope.launch(defaultDispatcher + coroutineExceptionHandler) {
             val response = repository.getBreweryById(id)
             _brewery.postValue(
                 com.patrickmota.brewery.viewmodel.ViewData(
@@ -56,7 +56,7 @@ class FavoriteViewModel(
     fun loadFavoriteBreweries() {
         _breweries.postValue(com.patrickmota.brewery.viewmodel.ViewData(com.patrickmota.brewery.viewmodel.ViewData.Status.LOADING))
 
-        CoroutineScope(defaultDispatcher).launch(defaultDispatcher + coroutineExceptionHandler) {
+        viewModelScope.launch(defaultDispatcher + coroutineExceptionHandler) {
             val response = repository.getBreweries()
             _breweries.postValue(
                 com.patrickmota.brewery.viewmodel.ViewData(

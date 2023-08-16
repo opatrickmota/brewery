@@ -8,7 +8,6 @@ import com.patrickmota.brewery.core.domain.repositories.BreweryRepository
 import com.patrickmota.brewery.viewmodel.ViewData
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
@@ -30,7 +29,7 @@ class HomeViewModel(
 
     fun loadBreweries(city: String) {
         _breweries.postValue(ViewData(ViewData.Status.LOADING))
-        CoroutineScope(defaultDispatcher).launch(coroutineExceptionHandler + defaultDispatcher) {
+        viewModelScope.launch(coroutineExceptionHandler + defaultDispatcher) {
             val response = breweryRepository.getBreweries(city)
             _breweries.postValue(
                 ViewData(

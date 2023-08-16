@@ -3,10 +3,10 @@ package com.patrickmota.brewery.favorite
 import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.patrickmota.brewery.common.NavigationHelper.DETAIL_DEEP_LINK
 import com.patrickmota.brewery.core.data.models.Brewery
@@ -14,13 +14,13 @@ import com.patrickmota.brewery.core.data.models.BreweryModel
 import com.patrickmota.brewery.core.data.models.BreweryResponse
 import com.patrickmota.brewery.favorite.databinding.FragmentFavoriteBreweriesBinding
 import com.patrickmota.brewery.viewmodel.favorite.FavoriteViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class FavoriteBreweriesFragment(private val breweries: List<BreweryResponse>) : Fragment() {
 
     private lateinit var binding: FragmentFavoriteBreweriesBinding
     private lateinit var resultAdapter: FavoriteBreweriesFragmentAdapter
-    private val favoriteViewModel: FavoriteViewModel by viewModel()
+    private val favoriteViewModel: FavoriteViewModel by sharedViewModel()
     private lateinit var favoritesBreweries: ArrayList<BreweryModel>
     private var state: Parcelable? = null
 

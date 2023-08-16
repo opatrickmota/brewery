@@ -2,7 +2,6 @@ package com.patrickmota.brewery.viewmodel.detail
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.patrickmota.brewery.core.data.models.BreweryResponse
 import com.patrickmota.brewery.core.domain.repositories.BreweryRepository
 import com.patrickmota.brewery.viewmodel.ViewData

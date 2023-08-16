@@ -14,13 +14,13 @@ import com.patrickmota.brewery.core.data.models.BreweryModel
 import com.patrickmota.brewery.core.data.models.BreweryResponse
 import com.patrickmota.brewery.home.databinding.FragmentSearchResultBinding
 import com.patrickmota.brewery.viewmodel.favorite.FavoriteViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class SearchResultFragment(private val breweries: List<BreweryResponse>) : Fragment() {
 
     private lateinit var binding: FragmentSearchResultBinding
     private lateinit var resultAdapter: SearchFragmentAdapter
-    private val favoriteViewModel: FavoriteViewModel by viewModel()
+    private val favoriteViewModel: FavoriteViewModel by sharedViewModel()
     private lateinit var favoritesBreweries: ArrayList<BreweryModel>
     private var state: Parcelable? = null
 

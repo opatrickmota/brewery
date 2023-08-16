@@ -1,10 +1,10 @@
 package com.patrickmota.brewery.favorite
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.fragment.findNavController
@@ -12,12 +12,12 @@ import com.patrickmota.brewery.core.data.models.toBreweryResponse
 import com.patrickmota.brewery.favorite.databinding.FragmentFavoriteBinding
 import com.patrickmota.brewery.viewmodel.ViewData
 import com.patrickmota.brewery.viewmodel.favorite.FavoriteViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class FavoriteFragment : Fragment() {
 
     private lateinit var binding: FragmentFavoriteBinding
-    private val favoriteViewModel: FavoriteViewModel by viewModel()
+    private val favoriteViewModel: FavoriteViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

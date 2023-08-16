@@ -26,13 +26,14 @@ import com.patrickmota.brewery.viewmodel.detail.DetailViewModel
 import com.patrickmota.brewery.viewmodel.favorite.FavoriteViewModel
 import com.patrickmota.brewery.viewmodel.rate.RateViewModel
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailBinding
     private val viewModel: DetailViewModel by viewModel()
-    private val favoriteViewModel: FavoriteViewModel by viewModel()
+    private val favoriteViewModel: FavoriteViewModel by sharedViewModel()
     private lateinit var rateBinding: BottomSheetDialogLayoutBinding
     private val dialog by lazy {
         BottomSheetDialog(requireContext(), R.style.RateThemeDialog)
